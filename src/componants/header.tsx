@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import { PLANITY_URL } from "@/lib/links";
 
 const navLinks = [
   { label: "ACCUEIL", href: "#accueil" },
@@ -33,7 +34,7 @@ export default function Header() {
         className="-z-20 object-cover"
       />
       {/* Voile sombre pour la lisibilité */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/55 via-black/45 to-black/65" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/40 via-black/30 to-black/50" />
 
       {/* Navbar */}
       <nav className="relative flex items-center justify-between px-6 py-5 sm:px-12 lg:px-20">
@@ -66,7 +67,9 @@ export default function Header() {
 
         {/* Bouton rendez-vous desktop */}
         <a
-          href="#rendez-vous"
+          href={PLANITY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="animate-fade-in hidden rounded-[4px] bg-[#ffb289] px-9 py-4 text-sm font-bold tracking-[1.5px] text-[#fbf8f4] transition-all hover:bg-[#ff9e6d] hover:shadow-lg hover:shadow-[#ffb289]/30 active:scale-95 active:bg-[#ff9e6d] lg:inline-block"
           style={{ animationDelay: "0.6s" }}
         >
@@ -101,7 +104,9 @@ export default function Header() {
               ))}
             </ul>
             <a
-              href="#rendez-vous"
+              href={PLANITY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
               className="mt-4 block rounded-[4px] bg-[#ffb289] px-6 py-3.5 text-center text-sm font-bold tracking-[1.5px] text-[#16110d] transition-all hover:bg-[#ff9e6d] active:scale-95 active:bg-[#ff9e6d]"
             >
@@ -140,7 +145,9 @@ export default function Header() {
         </p>
 
         <a
-          href="#rendez-vous"
+          href={PLANITY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="animate-fade-up mt-10 inline-block w-fit rounded-[4px] bg-[#ffb289] px-9 py-4 text-sm font-bold tracking-[1.5px] text-[#fbf8f4] transition-all hover:bg-[#ff9e6d] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#ffb289]/30 active:scale-95 active:bg-[#ff9e6d]"
           style={{ animationDelay: "0.7s" }}
         >

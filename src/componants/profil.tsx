@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Calendar, Phone, Mail, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { PLANITY_URL } from "@/lib/links";
 
 export interface ProfilCardProps {
   name?: string;
@@ -24,7 +25,7 @@ export default function Profil(props: ProfilCardProps) {
     title = "Esthéticienne diplômée · Cils, ongles & bien-être à Noisy-le-Grand",
     description = "Passionnée par l'univers de la beauté et du bien-être, Socheata est une esthéticienne diplômée qui exerce au sein de son propre espace : le Studio Socheata. Spécialisée dans le rehaussement et l'extension de cils ainsi que dans l'onglerie, elle accompagne chaque cliente vers une beauté naturelle, durable et soignée. Experte en pose de vernis semi-permanent et en soin des ongles, elle offre une parure raffinée et longue tenue, pensée pour s'adapter à votre style comme à votre quotidien.",
     imageUrl = "/images/souchi.jpg",
-    bookingUrl = "#rendez-vous",
+    bookingUrl = PLANITY_URL,
     phone = "tel:+33000000000",
     email = "mailto:contact@studiosocheata.fr",
     mapUrl = "#localisation",

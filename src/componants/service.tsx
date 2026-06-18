@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { Star } from "lucide-react";
+import { PLANITY_URL } from "@/lib/links";
 
 type Prestation = {
   num: string;
@@ -22,7 +23,7 @@ const prestations: Prestation[] = [
       "Un regard intense et sublimé : pose naturelle, cat eye ou volume intense, selon l'effet recherché. Pose et remplissage par une experte.",
     price: "À partir de 55 € · Remplissage dès 40 €",
     cta: "RÉSERVER MES CILS",
-    image: "/images/service2.png",
+    image: "/images/service3.jpg",
   },
   {
     num: "02",
@@ -40,7 +41,7 @@ const prestations: Prestation[] = [
       "Des ongles élégants et durables : vernis semi-permanent, pose gel, capsules Gel X, gainage et beauté des mains. Une parure qui tient dans le temps.",
     price: "Beauté des mains dès 20 € · Semi-permanent dès 25 €",
     cta: "RÉSERVER MES ONGLES",
-    image: "/images/service1.png",
+    image: "/images/service2.png",
   },
   {
     num: "04",
@@ -49,7 +50,7 @@ const prestations: Prestation[] = [
       "Une peau nette et soignée : épilations à la cire (sourcils, visage, corps) dans un cadre apaisant.",
     price: "Dès 40 €",
     cta: "PRENDRE RENDEZ-VOUS",
-    image: "/images/service2.png",
+    image: "/images/service4.jpg",
   },
 ];
 
@@ -142,7 +143,9 @@ export default function Service() {
                   {current.price}
                 </p>
                 <a
-                  href="#rendez-vous"
+                  href={PLANITY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-8 inline-block rounded-[4px] bg-[#ffb289] px-9 py-4 text-sm font-bold tracking-[1.5px] text-[#16110d] transition-all hover:-translate-y-0.5 hover:bg-[#ff9e6d] hover:shadow-lg hover:shadow-[#ffb289]/30 active:scale-95 active:bg-[#ff9e6d]"
                 >
                   {current.cta}
@@ -169,7 +172,7 @@ export default function Service() {
         {/* CTA global */}
         <div className="mt-12 text-center">
           <a
-            href="https://www.planity.com"
+            href={PLANITY_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm font-semibold tracking-[1.5px] text-[#ffb289] underline-offset-4 hover:underline"

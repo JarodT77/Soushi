@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { PLANITY_URL } from "@/lib/links";
 
 const navLinks = [
   { label: "Accueil", href: "#accueil" },
@@ -112,7 +113,9 @@ export default function Footer() {
             </ul>
 
             <a
-              href="#rendez-vous"
+              href={PLANITY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-6 inline-block rounded-[4px] bg-[#ffb289] px-7 py-3 text-xs font-bold tracking-[1.5px] text-[#16110d] transition-all hover:-translate-y-0.5 hover:bg-[#ff9e6d] active:scale-95 active:bg-[#ff9e6d]"
             >
               PRENDRE RENDEZ-VOUS
