@@ -124,7 +124,7 @@ export default function Header() {
         />
 
         <h1
-          className="animate-fade-up text-2xl font-bold tracking-[1.5px] sm:text-3xl lg:text-4xl"
+          className="animate-fade-up text-xl font-bold tracking-[1px] sm:text-3xl sm:tracking-[1.5px] lg:text-4xl"
           style={{ animationDelay: "0.3s" }}
         >
           <span className="text-[#ffb289]">INSTITUT DE BEAUTÉ</span>{" "}
@@ -132,7 +132,7 @@ export default function Header() {
         </h1>
 
         <p
-          className="animate-fade-up mt-5 max-w-2xl text-base font-normal leading-relaxed tracking-[1px] text-white sm:text-lg lg:text-xl"
+          className="animate-fade-up mt-4 max-w-2xl text-sm font-normal leading-relaxed tracking-[0.5px] text-white sm:mt-5 sm:text-lg sm:tracking-[1px] lg:text-xl"
           style={{ animationDelay: "0.5s" }}
         >
           Révélez votre beauté naturelle : extensions de cils, prothésie
@@ -149,11 +149,11 @@ export default function Header() {
       </div>
 
       {/* Barre des catégories */}
-      <div className="flex flex-wrap items-center justify-between gap-4 px-6 py-8 sm:px-12 lg:px-20">
+      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 px-6 py-5 sm:gap-4 sm:px-12 sm:py-8 lg:px-20">
         {categories.map((category, i) => (
           <span
             key={category}
-            className="animate-fade-up cursor-default text-lg font-normal tracking-[1.5px] text-white transition-colors hover:text-[#ffb289] sm:text-2xl"
+            className="animate-fade-up cursor-default text-xs font-normal tracking-[1px] text-white transition-colors hover:text-[#ffb289] sm:text-2xl sm:tracking-[1.5px]"
             style={{ animationDelay: `${0.9 + 0.12 * i}s` }}
           >
             {category}
