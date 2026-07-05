@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Search } from "lucide-react";
 import { requireAdmin } from "@/lib/auth/require-admin";
 import Scanner from "./scanner";
 
@@ -21,7 +22,15 @@ export default async function AdminPage() {
 
         <Scanner />
 
-        <p className="mt-8 text-center">
+        <Link
+          href="/admin/recherche"
+          className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl border border-white/25 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
+        >
+          <Search className="h-4 w-4" />
+          Rechercher un client
+        </Link>
+
+        <p className="mt-6 text-center">
           <Link href="/mon-compte" className="text-xs text-white/40 hover:underline">
             ← Retour à mon compte
           </Link>

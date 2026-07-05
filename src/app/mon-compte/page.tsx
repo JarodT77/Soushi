@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import QRCode from "qrcode";
 import { createClient } from "@/lib/supabase/server";
 import { signOut } from "@/lib/auth/actions";
@@ -46,29 +47,44 @@ export default async function MonComptePage() {
 
   return (
     <main className="flex min-h-screen items-center justify-center px-6 py-16">
-      <div className="w-full max-w-md rounded-2xl bg-white/95 p-8 shadow-2xl backdrop-blur animate-fade-up">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="font-script text-4xl leading-none text-[#936b55]">
-              {profil?.prenom}
-            </h1>
-            <p className="mt-1 text-xs uppercase tracking-widest text-neutral-500">
-              Carte de fidélité
+      <div className="animate-fade-up relative w-full max-w-md overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-8 text-white shadow-2xl shadow-black/30 backdrop-blur-2xl">
+        {/* Reflet de verre en haut */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/50 to-transparent" />
+        {/* Halo lumineux discret */}
+        <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#ffb289]/20 blur-3xl" />
+
+        {profil?.role === "admin" && (
+          <Link
+            href="/admin"
+            className="absolute right-4 top-4 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-[11px] font-medium text-white/90 backdrop-blur transition hover:bg-white/20"
+          >
+            Espace salon
+          </Link>
+        )}
+
+        {/* Logo + titre */}
+        <div className="relative flex flex-col items-center">
+          <Image
+            src="/images/logo-studio-socheata.png"
+            alt="Studio Socheata"
+            width={737}
+            height={243}
+            priority
+            className="h-auto w-44"
+          />
+          <p className="mt-3 text-[11px] uppercase tracking-[0.25em] text-white/60">
+            Carte de fidélité
+          </p>
+          {profil?.prenom && (
+            <p className="mt-4 font-script text-3xl text-[#ffb289]">
+              Bonjour {profil.prenom}
             </p>
-          </div>
-          {profil?.role === "admin" && (
-            <Link
-              href="/admin"
-              className="rounded-full bg-[#282522] px-4 py-1.5 text-xs font-medium text-white transition hover:bg-[#3d3833]"
-            >
-              Espace salon
-            </Link>
           )}
         </div>
 
         {/* Récompense disponible */}
         {fidelite.recompensesDisponibles > 0 && (
-          <div className="mt-6 rounded-xl bg-[#936b55]/10 px-4 py-3 text-center text-sm font-medium text-[#7c5a47]">
+          <div className="mt-6 rounded-2xl border border-[#ffb289]/30 bg-[#ffb289]/15 px-4 py-3 text-center text-sm font-medium text-[#ffd9c2]">
             🎁 {fidelite.recompensesDisponibles} récompense
             {fidelite.recompensesDisponibles > 1 ? "s" : ""} disponible
             {fidelite.recompensesDisponibles > 1 ? "s" : ""} — présentez votre carte
@@ -77,10 +93,10 @@ export default async function MonComptePage() {
         )}
 
         {/* Tampons */}
-        <div className="mt-6">
+        <div className="mt-8">
           <div className="mb-3 flex items-baseline justify-between">
-            <span className="text-sm text-neutral-600">Vos tampons</span>
-            <span className="text-sm font-semibold text-[#936b55]">
+            <span className="text-sm text-white/70">Vos tampons</span>
+            <span className="text-sm font-semibold text-[#ffb289]">
               {fidelite.tamponsActuels} / {fidelite.objectif}
             </span>
           </div>
@@ -92,8 +108,8 @@ export default async function MonComptePage() {
                   key={i}
                   className={`flex aspect-square items-center justify-center rounded-full border text-sm font-medium ${
                     rempli
-                      ? "border-[#936b55] bg-[#936b55] text-white"
-                      : "border-neutral-200 text-neutral-300"
+                      ? "border-[#ffb289] bg-[#ffb289] text-[#282522]"
+                      : "border-white/25 text-white/40"
                   }`}
                 >
                   {rempli ? "✓" : i + 1}
@@ -101,24 +117,26 @@ export default async function MonComptePage() {
               );
             })}
           </div>
-          <p className="mt-3 text-center text-xs text-neutral-400">
+          <p className="mt-3 text-center text-xs text-white/50">
             {fidelite.objectif} passages = 1 prestation offerte
           </p>
         </div>
 
-        {/* QR code */}
+        {/* QR code (fond blanc pour rester scannable) */}
         {qrSvg && (
           <div className="mt-8 flex flex-col items-center">
-            <div
-              className="h-44 w-44 [&>svg]:h-full [&>svg]:w-full"
-              dangerouslySetInnerHTML={{ __html: qrSvg }}
-            />
+            <div className="rounded-2xl bg-white p-4 shadow-lg">
+              <div
+                className="h-40 w-40 [&>svg]:h-full [&>svg]:w-full"
+                dangerouslySetInnerHTML={{ __html: qrSvg }}
+              />
+            </div>
             {carte?.code && (
-              <p className="mt-3 font-mono text-lg tracking-[0.3em] text-[#282522]">
+              <p className="mt-4 font-mono text-xl tracking-[0.3em] text-white">
                 {carte.code}
               </p>
             )}
-            <p className="mt-2 max-w-60 text-center text-xs text-neutral-500">
+            <p className="mt-2 max-w-60 text-center text-xs text-white/60">
               Présentez ce code à l&apos;accueil à chaque visite pour valider un
               passage.
             </p>
@@ -128,7 +146,7 @@ export default async function MonComptePage() {
         <form action={signOut} className="mt-8">
           <button
             type="submit"
-            className="w-full rounded-lg border border-[#936b55] py-3 text-sm font-medium text-[#936b55] transition hover:bg-[#936b55] hover:text-white"
+            className="w-full rounded-xl border border-white/30 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
           >
             Se déconnecter
           </button>

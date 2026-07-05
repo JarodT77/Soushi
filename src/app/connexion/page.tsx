@@ -1,27 +1,43 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useActionState } from "react";
 import { signIn, type AuthState } from "@/lib/auth/actions";
 
 const initialState: AuthState = {};
+
+const inputClass =
+  "w-full rounded-xl border border-white/25 bg-white/10 px-4 py-2.5 text-white placeholder:text-white/40 outline-none transition focus:border-[#ffb289] focus:bg-white/15 focus:ring-2 focus:ring-[#ffb289]/30";
 
 export default function ConnexionPage() {
   const [state, formAction, pending] = useActionState(signIn, initialState);
 
   return (
     <main className="flex min-h-screen items-center justify-center px-6 py-16">
-      <div className="w-full max-w-md rounded-2xl bg-white/95 p-8 shadow-2xl backdrop-blur animate-fade-up">
-        <h1 className="text-center font-script text-4xl text-[#936b55]">
-          Studio Socheata
-        </h1>
-        <p className="mt-1 text-center text-sm uppercase tracking-widest text-neutral-500">
-          Espace fidélité
-        </p>
+      <div className="animate-fade-up relative w-full max-w-md overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-8 text-white shadow-2xl shadow-black/30 backdrop-blur-2xl">
+        {/* Reflet de verre en haut */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/50 to-transparent" />
+        {/* Halo lumineux discret */}
+        <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#ffb289]/20 blur-3xl" />
+
+        <div className="relative flex flex-col items-center">
+          <Image
+            src="/images/logo-studio-socheata.png"
+            alt="Studio Socheata"
+            width={737}
+            height={243}
+            priority
+            className="h-auto w-44"
+          />
+          <p className="mt-3 text-[11px] uppercase tracking-[0.25em] text-white/60">
+            Espace fidélité
+          </p>
+        </div>
 
         <form action={formAction} className="mt-8 space-y-5">
           <div>
-            <label htmlFor="email" className="mb-1 block text-sm text-neutral-700">
+            <label htmlFor="email" className="mb-1 block text-sm text-white/70">
               Email
             </label>
             <input
@@ -30,15 +46,12 @@ export default function ConnexionPage() {
               type="email"
               autoComplete="email"
               required
-              className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-neutral-900 outline-none transition focus:border-[#936b55] focus:ring-2 focus:ring-[#936b55]/30"
+              className={inputClass}
             />
           </div>
 
           <div>
-            <label
-              htmlFor="password"
-              className="mb-1 block text-sm text-neutral-700"
-            >
+            <label htmlFor="password" className="mb-1 block text-sm text-white/70">
               Mot de passe
             </label>
             <input
@@ -47,12 +60,12 @@ export default function ConnexionPage() {
               type="password"
               autoComplete="current-password"
               required
-              className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-neutral-900 outline-none transition focus:border-[#936b55] focus:ring-2 focus:ring-[#936b55]/30"
+              className={inputClass}
             />
           </div>
 
           {state.error && (
-            <p className="rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-700">
+            <p className="rounded-xl border border-red-300/30 bg-red-500/15 px-4 py-2.5 text-sm text-red-100">
               {state.error}
             </p>
           )}
@@ -60,20 +73,20 @@ export default function ConnexionPage() {
           <button
             type="submit"
             disabled={pending}
-            className="w-full rounded-lg bg-[#936b55] py-3 font-medium text-white transition hover:bg-[#7c5a47] disabled:opacity-60"
+            className="w-full rounded-xl bg-[#ffb289] py-3 font-medium text-[#282522] transition hover:bg-[#ff9e6d] disabled:opacity-60"
           >
             {pending ? "Connexion…" : "Se connecter"}
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-neutral-600">
+        <p className="mt-6 text-center text-sm text-white/70">
           Pas encore de carte ?{" "}
-          <Link href="/inscription" className="font-medium text-[#936b55] hover:underline">
+          <Link href="/inscription" className="font-medium text-[#ffb289] hover:underline">
             Créer un compte
           </Link>
         </p>
         <p className="mt-2 text-center">
-          <Link href="/" className="text-xs text-neutral-400 hover:underline">
+          <Link href="/" className="text-xs text-white/50 hover:underline">
             ← Retour au site
           </Link>
         </p>
