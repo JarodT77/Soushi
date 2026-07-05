@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import { Menu, X, User } from "lucide-react";
 import { PLANITY_URL } from "@/lib/links";
 
 const navLinks = [
@@ -65,16 +66,27 @@ export default function Header() {
           ))}
         </ul>
 
-        {/* Bouton rendez-vous desktop */}
-        <a
-          href={PLANITY_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="animate-fade-in hidden rounded-[4px] bg-[#ffb289] px-9 py-4 text-sm font-bold tracking-[1.5px] text-[#fbf8f4] transition-all hover:bg-[#ff9e6d] hover:shadow-lg hover:shadow-[#ffb289]/30 active:scale-95 active:bg-[#ff9e6d] lg:inline-block"
-          style={{ animationDelay: "0.6s" }}
-        >
-          PRENDRE RENDEZ-VOUS
-        </a>
+        {/* Bouton rendez-vous + connexion desktop */}
+        <div className="hidden items-center gap-4 lg:flex">
+          <a
+            href={PLANITY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="animate-fade-in rounded-[4px] bg-[#ffb289] px-9 py-4 text-sm font-bold tracking-[1.5px] text-[#fbf8f4] transition-all hover:bg-[#ff9e6d] hover:shadow-lg hover:shadow-[#ffb289]/30 active:scale-95 active:bg-[#ff9e6d]"
+            style={{ animationDelay: "0.6s" }}
+          >
+            PRENDRE RENDEZ-VOUS
+          </a>
+          <Link
+            href="/connexion"
+            aria-label="Connexion à mon espace fidélité"
+            title="Mon espace fidélité"
+            className="animate-fade-in flex h-[52px] w-[52px] items-center justify-center rounded-[4px] border border-white/40 text-white transition-all hover:border-[#ffb289] hover:text-[#ffb289] active:scale-95"
+            style={{ animationDelay: "0.7s" }}
+          >
+            <User className="h-5 w-5" />
+          </Link>
+        </div>
 
         {/* Bouton burger mobile */}
         <button
@@ -112,6 +124,14 @@ export default function Header() {
             >
               PRENDRE RENDEZ-VOUS
             </a>
+            <Link
+              href="/connexion"
+              onClick={() => setMenuOpen(false)}
+              className="mt-3 flex items-center justify-center gap-2 rounded-[4px] border border-white/40 px-6 py-3.5 text-center text-sm font-bold tracking-[1.5px] text-white transition-all hover:border-[#ffb289] hover:text-[#ffb289] active:scale-95"
+            >
+              <User className="h-4 w-4" />
+              MON ESPACE FIDÉLITÉ
+            </Link>
           </div>
         )}
       </nav>
@@ -143,7 +163,7 @@ export default function Header() {
           Révélez votre beauté naturelle : extensions de cils, prothésie
           ongulaire et soins bien-être, sur rendez-vous à Noisy-le-Grand.
         </p>
-
+ 
         <a
           href={PLANITY_URL}
           target="_blank"
